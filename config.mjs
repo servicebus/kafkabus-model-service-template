@@ -7,18 +7,16 @@ const defaultConfig = {
   PORT: 3000,
   secretPath: '/run/secrets/',
   servicebus: {
-    prefetch: 10,
-    queuePrefix: 'todolist-model-service',
+    serviceName: 'todolist-model-service',
     redis: {
       host: process.env.REDIS_HOST || 'localhost',
       port: process.env.REDIS_PORT || '6379',
       password: process.env.REDIS_PASSWORD,
     },
-    rabbitmq: {
-      host: process.env.RABBITMQ_HOST || 'localhost',
-      port: process.env.RABBITMQ_PORT || '5672',
-      user: process.env.RABBITMQ_USER || 'guest',
-      password: process.env.RABBITMQ_PASSWORD || 'guest'
+    kafka: {
+      host: process.env.KAFKA_HOST || '127.0.0.1',
+      port: process.env.KAFKA_PORT || '9092',
+      brokers: process.env.KAFKA_BROKERS && process.env.KAFKA_BROKERS.split(',') || ['localhost:9092', 'localhost:9095', 'localhost:9098']
     },
   },
   sourced: {

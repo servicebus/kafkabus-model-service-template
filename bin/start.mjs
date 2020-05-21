@@ -3,7 +3,7 @@ import path from 'path'
 import log from 'llog'
 import errortrap from 'errortrap'
 import registerHandlers from '@servicebus/register-handlers'
-import servicebus from 'servicebus-bus-common'
+import servicebus from 'kafkabus-common'
 import { config } from '../config.mjs'
 import mongoClient from 'sourced-repo-mongo/mongo.js'
 
@@ -37,7 +37,7 @@ export const start = async (onStart) => {
   // Servicebus is kinda lika an event emitter for your whole system.
   // You can emit an event in one service. Then you can listen for that event in another service.
   // It is also fault tolerant and scalable.
-  // It's backed by RabbitMQ and Redis.
+  // It's backed by Kafka and Redis.
   // It's been used in production for years in financial transactions with large volumes, AI projects
   // and at least one blockchain based company.
   //
