@@ -1,6 +1,8 @@
-# model-microservice-template
+# @servicebus/kafkabus-model-service-template
+[![Build Status](https://travis-ci.org/servicebus/kafkabus-model-service-template.svg?branch=master)](https://travis-ci.org/servicebus/kafkabus-model-service-template)
+[![codecov](https://codecov.io/gh/servicebus/kafkabus-model-service-template/branch/master/graph/badge.svg)](https://codecov.io/gh/servicebus/kafkabus-model-service-template)
 
-This is an example of a "model" microservice, because that is the most complex :)
+This is an example of a "model" microservice using `@servicebus/kafkabus`, because model services are the most complex, and most necessary :)
 
 It uses Event Sourcing with `sourced`.
 
@@ -16,14 +18,14 @@ https://hackernoon.com/learning-these-5-microservice-patterns-will-make-you-a-be
 * Starts the application:
   1. Connects to DB
   1. Configures a bus
-  1. Registers command/event handlers with `servicebus-register-handlers`
+  1. Registers command/event handlers with `@servicebus/register-handlers`
 * If you find the "common" settings don't work for you, it's easy to use your own!
 
 `./handlers/*`
 * Event and command handlers
   * Events are "published" with `bus.publish`, and services can `subscribe` to those events
   * Commands are "sent" with `bus.send`, and services can `listen` for those commands
-* Imported/Required by `servicebus-register-handlers` when the service starts
+* Imported/Required by `@servicebus/register-handlers` when the service starts
 
 `./config.mjs`
 * Using `cconfig` for configuration
