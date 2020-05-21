@@ -31,7 +31,7 @@ export const start = async (onStart) => {
   }
   log.info('connected to mongo')
 
-  // `servicebus-bus-common.makeBus` creates a new instance of servicebus.bus
+  // `@servicebus/kafkabus-common.makeBus` creates a new instance of servicebus.bus
   // using commonly used servicebus middleware
   //
   // Servicebus is kinda lika an event emitter for your whole system.

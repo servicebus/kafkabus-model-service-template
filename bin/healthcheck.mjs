@@ -1,4 +1,4 @@
-import servicebus from 'servicebus-bus-common'
+import servicebus from '@servicebus/kafkabus-common'
 import { config } from '../config.mjs'
 import mongoClient from 'sourced-repo-mongo/mongo'
 

@@ -1,6 +1,6 @@
 import { exit, check, handleSuccessfulConnection, handleUnsuccessfulConnection } from 'healthcheck.mjs'
 
-jest.mock('servicebus-bus-common')
+jest.mock('@servicebus/kafkabus-common')
 jest.mock('sourced-repo-mongo/mongo', () => ({
   connect: jest.fn(() => {
     return new Promise((resolve, reject) => {
