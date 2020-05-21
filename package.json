@@ -1,7 +1,7 @@
 {
-  "name": "kafkabus-model-service-template",
+  "name": "@servicebus/kafkabus-model-service-template",
   "version": "0.0.1",
-  "description": "kafkabus-model-service-template",
+  "description": "@servicebus/kafkabus-model-service-template",
   "bin": {
     "healthcheck": "./bin/healthcheck.mjs",
     "start": "./bin/start.mjs"
