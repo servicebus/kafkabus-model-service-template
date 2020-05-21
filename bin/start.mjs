@@ -3,7 +3,7 @@ import path from 'path'
 import log from 'llog'
 import errortrap from 'errortrap'
 import registerHandlers from '@servicebus/register-handlers'
-import servicebus from 'kafkabus-common'
+import servicebus from '@servicebus/kafkabus-common'
 import { config } from '../config.mjs'
 import mongoClient from 'sourced-repo-mongo/mongo.js'
 

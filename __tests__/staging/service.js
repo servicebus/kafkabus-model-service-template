@@ -1,5 +1,5 @@
 import debug from 'debug'
-import { makeBus } from 'kafkabus-common'
+import { makeBus } from '@servicebus/kafkabus-common'
 import readableId from 'readable-id-mjs'
 
 const config = {
