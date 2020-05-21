@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@servicebus/kafkabus-common": "1.0.1",
-    "@servicebus/register-handlers": "1.0.2",
+    "@servicebus/register-handlers": "1.0.3",
     "bluebird": "3.7.2",
     "cconfig": "2.0.2",
     "errortrap": "1.0.2",
