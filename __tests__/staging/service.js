@@ -11,8 +11,8 @@ const config = {
     },
     kafka: {
       host: process.env.KAFKA_HOST || '127.0.0.1',
-      port: process.env.KAFKA_PORT || '9093',
-      brokers: process.env.KAFKA_BROKERS && process.env.KAFKA_BROKERS.split(',') || ['localhost:9093', 'localhost:9095', 'localhost:9097']
+      port: process.env.KAFKA_PORT || '9092',
+      brokers: process.env.KAFKA_BROKERS && process.env.KAFKA_BROKERS.split(',') || ['localhost:9092', 'localhost:9095', 'localhost:9098']
     },
     mongo: {
       url: process.env.MONGO_URL || 'mongodb://localhost:27017/todolist-model-service'
@@ -22,7 +22,7 @@ const config = {
 
 const log = debug('todolist-model-service')
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 15 * 1000
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 30 * 1000
 
 describe('service', () => {
   let bus
@@ -65,7 +65,7 @@ describe('service', () => {
         })
 
         setTimeout(async () => {
-          await bus.send(testCommand, newItem, { ack: true, correlationId: 'test-id' })
+          await bus.send(testCommand, newItem, { correlationId: 'test-id' })
           log(`sent ${testCommand} command`)
         }, 500)
       })

@@ -1,17 +1,12 @@
 import path from 'path'
 
 import log from 'llog'
-import errortrap from '@servicebus/errortrap'
 import registerHandlers from '@servicebus/register-handlers'
 import servicebus from '@servicebus/kafkabus-common'
 import { config } from '../config.mjs'
 import mongoClient from 'sourced-repo-mongo/mongo.js'
 
 // 🔥 Welcome to my opinionated servicebus boilerplate! 🔥
-
-// errortrap logs uncaught exceptions with llog before
-// throwing an error
-errortrap()
 
 export const start = async (onStart) => {
   // "Model services" need persistence.

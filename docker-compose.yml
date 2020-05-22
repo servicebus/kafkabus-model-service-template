@@ -5,13 +5,6 @@ networks:
 
 services:
 
-  redis:
-    image: redis
-    networks:
-      - servicebus
-    ports:
-      - 6379:6379
-
   mongo:
     image: mongo
     networks:

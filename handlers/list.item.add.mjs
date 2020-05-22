@@ -10,7 +10,7 @@ log.info({ msg: `registering ${command}`, command })
 // WARNING: You can not use an () => {} function here, because the context
 // that contains the bus will not be bound properly!
 //
-export const listen = async function ({ type, data, datetime }, done) {
+export const listen = async function ({ type, data, datetime }) {
   try {
     const { bus } = this
     const { todoListId, item } = data
@@ -53,7 +53,7 @@ export const listen = async function ({ type, data, datetime }, done) {
     done()
   } catch (err) {
     log.error(err)
-    done(`Command Handler Failed for ${command} - ${err}`)
+    // done(`Command Handler Failed for ${command} - ${err}`)
   }
 }
 
