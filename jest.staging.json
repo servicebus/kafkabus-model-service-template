@@ -2,6 +2,7 @@
   "roots": ["<rootDir>/__tests__/staging"],
   "testRegex": ".*\\.js$",
   "testEnvironment": "node",
+  "testTimeout": 30000,
   "modulePaths": [
     "src",
     "/node_modules/"

@@ -58,10 +58,10 @@ installDevOnly:
 staging:
 	COMPOSE_FILE=./docker-compose/staging.yml \
 		docker-compose up -d zookeeper kafka1 kafka2 kafka3 redis mongo
-	sleep 10
+	sleep 25
 	COMPOSE_FILE=./docker-compose/staging.yml \
 		docker-compose up -d staging-deps
-	sleep 10
+	sleep 20
 	make run-staging-tests
 
 run-staging-tests:
