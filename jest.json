@@ -26,6 +26,7 @@
     "bin/*.{js,jsx,mjs}",
     "handlers/*.{js,jsx,mjs}",
     "lib/**/*.{js,jsx,mjs}"
-  ]
+  ],
+  "testTimeout": 30000
 }  
   

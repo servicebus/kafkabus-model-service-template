@@ -1,6 +1,6 @@
 import { start, onStart } from 'start.mjs'
 jest.mock('llog')
-jest.mock('errortrap', () => jest.fn())
+jest.mock('@servicebus/errortrap', () => jest.fn())
 jest.mock('@servicebus/register-handlers')
 jest.mock('@servicebus/kafkabus-common')
 jest.mock('../../../config.mjs')
@@ -9,7 +9,7 @@ jest.mock('sourced-repo-mongo/mongo')
 
 describe('./bin/start.mjs', () => {
   it('should start our todolist-model-service', () => {
-    const errortrap = require('errortrap')
+    const errortrap = require('@servicebus/errortrap')
     const log = require('llog')
 
     start()
