@@ -57,7 +57,7 @@ installDevOnly:
 
 staging:
 	COMPOSE_FILE=./docker-compose/staging.yml \
-		docker-compose up -d rabbitmq redis mongo
+		docker-compose up -d zookeeper kafka1 kafka2 kafka3 redis mongo
 	sleep 10
 	COMPOSE_FILE=./docker-compose/staging.yml \
 		docker-compose up -d staging-deps
