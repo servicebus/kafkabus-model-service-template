@@ -1,10 +1,12 @@
 import { defaultTimeout, startCancelTimeout } from 'cancel.mjs'
 
 describe('cancel', () => {
-  it('throws an error if timeout is reached', () => {
-    expect(() => {
+  it('throws an error if timeout is reached', (done) => {
+    try {
       defaultTimeout()
-    }).toThrow()
+    } catch (e) {
+      done()
+    }
   })
 
   it('calls timeout when reached', (done) => {
