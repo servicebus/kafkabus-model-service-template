@@ -10,6 +10,7 @@ script:
   - make ci
 after_success:
   - npm install -g codecov
+  - npm t # running tests again technically, but only after a successful build already to generate code cov reports
   - codecov
 branches:
   except:
