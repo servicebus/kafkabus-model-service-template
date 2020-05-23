@@ -1,6 +1,7 @@
 import { command, listen } from 'list.item.add.mjs'
 
 jest.mock('llog')
+jest.mock('cancel.mjs')
 jest.mock('models/TodoList', () => {
   const Entity = require('sourced').Entity
   class TodoList extends Entity {
