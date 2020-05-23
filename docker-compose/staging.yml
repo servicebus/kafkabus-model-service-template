@@ -45,8 +45,6 @@ services:
       - KAFKA_HOST=kafka1
       - KAFKA_PORT=29092
       - KAFKA_BROKERS=kafka1:29092,kafka2:29095,kafka3:29098
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
       - DEBUG=$DEBUG
     command: npm run test:staging
 

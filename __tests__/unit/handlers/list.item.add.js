@@ -35,7 +35,7 @@ describe('The list.item.add command handler', () => {
     expect(typeof listen === 'function').toBe(true)
   })
 
-  it('should call callback with error when called without a todoListId', (done) => {
+  it('should reject by calling fail with error when called without a todoListId', (done) => {
     const command = {
       type: 'list.item.add',
       data: {
@@ -50,12 +50,13 @@ describe('The list.item.add command handler', () => {
       }
     }
 
-    const cb = jest.fn((err) => {
+    const cb = jest.fn()
+    const fail = jest.fn((err) => {
       expect(err).toBe('Command Handler Failed for list.item.add - Error: list.item.add - todoListId must be defined!')
       done()
     })
 
-    listen.call(context, command, cb)
+    listen.call(context, command, cb, fail)
   })
 
   it('should handle an command with the listen function', (done) => {
@@ -133,18 +134,19 @@ describe('The list.item.add command handler', () => {
       }
     }
 
-    const cb = jest.fn((err) => {
+    const reject = jest.fn((err) => {
       expect(err).toBeDefined()
       done()
     })
+    const resolve = jest.fn()
 
     const todoListRepository = require('repos/todoListRepository').todoListRepository
     todoListRepository.getAsync = jest.fn(() => new Promise((resolve, reject) => { reject(new Error('Repo Error')) }))
 
-    listen.call(context, command, cb)
+    listen.call(context, command, resolve, reject)
   })
   
-  it('creates new instance if none found in repository', (done) => {
+  it('creates new instance of TodoList if none found in repository', (done) => {
     const command = {
       type: 'list.item.add',
       data: {
@@ -163,14 +165,18 @@ describe('The list.item.add command handler', () => {
       }
     }
 
-    const cb = jest.fn((err) => {
-      expect(err).toBeDefined()
+    const resolve = jest.fn(() => {
+      expect(context.bus.publish).toBeCalledWith('list.item.added', { completed: false, todo: 'write this test' })
+      expect(resolve).toBeCalled()
+      expect(reject).not.toBeCalled()
       done()
     })
+
+    const reject = jest.fn()
 
     const todoListRepository = require('repos/todoListRepository').todoListRepository
     todoListRepository.getAsync = jest.fn(() => new Promise((resolve, reject) => { resolve(null) }))
 
-    listen.call(context, command, cb)
+    listen.call(context, command, resolve, reject)
   })
 })

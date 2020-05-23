@@ -1,6 +1,7 @@
 import log from 'llog'
 import { TodoList } from '../lib/models/TodoList.mjs'
 import { todoListRepository } from '../lib/repos/todoListRepository.mjs'
+import { startCancelTimeout } from '../lib/cancel.mjs'
 import dm from 'debug'
 
 const debug = dm('microservice')
@@ -15,15 +16,13 @@ log.info({ msg: `registering ${command}`, command })
 // that contains the bus will not be bound properly!
 //
 export const listen = async function ({ type, data, datetime }, done, fail) {
-  debug('listen handler starting', done)
-  debug('arguments', arguments)
-  const cancel = setTimeout(() => {
-    throw new Error('the request is taking too long')
-  }, 60 * 1000)
   try {
     const { bus } = this
     const { todoListId, item } = data
     const { todo, complete } = item
+
+    // if mongo is down the request can hang
+    const timeout = startCancelTimeout()
 
     if (!todoListId) throw new Error(`${command} - todoListId must be defined!`)
 
@@ -58,7 +57,7 @@ export const listen = async function ({ type, data, datetime }, done, fail) {
     await todoListRepository.commitAsync(todoList)
 
     debug('todolist saved')
-    clearTimeout(cancel)
+    clearTimeout(timeout)
 
     await bus.publish('list.item.added', item)
     log.info({ msg: 'list.item.added', item })
@@ -67,7 +66,7 @@ export const listen = async function ({ type, data, datetime }, done, fail) {
   } catch (err) {
     log.error('error handling message:', err)
     debug('error handling message:', err)
-    return fail(`Command Handler Failed for ${command} - ${err}`)
+    fail(`Command Handler Failed for ${command} - ${err}`)
   }
 }
 
