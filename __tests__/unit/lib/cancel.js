@@ -6,7 +6,7 @@ describe('cancel', () => {
       defaultTimeout()
     }).toThrow()
   })
-  
+
   it('calls timeout when reached', (done) => {
     const onTimeout = jest.fn()
     startCancelTimeout(0, onTimeout)

@@ -145,7 +145,7 @@ describe('The list.item.add command handler', () => {
 
     listen.call(context, command, resolve, reject)
   })
-  
+
   it('creates new instance of TodoList if none found in repository', (done) => {
     const command = {
       type: 'list.item.add',

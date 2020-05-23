@@ -12,11 +12,11 @@ const config = {
     kafka: {
       host: process.env.KAFKA_HOST || '127.0.0.1',
       port: process.env.KAFKA_PORT || '9092',
-      brokers: process.env.KAFKA_BROKERS && process.env.KAFKA_BROKERS.split(',') || ['localhost:9092', 'localhost:9095', 'localhost:9098']
+      brokers: process.env.KAFKA_BROKERS ? process.env.KAFKA_BROKERS.split(',') : ['localhost:9092', 'localhost:9095', 'localhost:9098']
     },
     mongo: {
       url: process.env.MONGO_URL || 'mongodb://localhost:27017/todolist-model-service'
-    },
+    }
   }
 }
 
@@ -58,11 +58,13 @@ describe('service', () => {
     }
 
     const doTest = () => {
-      return new Promise(async (resolve, reject) => {
-        await bus.subscribe('list.item.added', (event, cb) => {
-          log('list.item.added', event.data)
-          resolve(event)
-        })
+      return new Promise((resolve, reject) => {
+        setTimeout(async () => {
+          await bus.subscribe('list.item.added', (event, cb) => {
+            log('list.item.added', event.data)
+            resolve(event)
+          })
+        }, 0)
 
         setTimeout(async () => {
           await bus.send(testCommand, newItem, { correlationId: 'test-id' })
