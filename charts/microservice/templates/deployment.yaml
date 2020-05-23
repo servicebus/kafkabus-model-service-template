@@ -34,20 +34,20 @@ spec:
           value: {{ default "" .Values.mongodb.mongodbPassword | quote }}
         - name: MONGODB_DATABASE
           value: {{ default "" .Values.mongodb.mongodbDatabase | quote }}
-        - name: RABBITMQ_HOST
-          value: {{ default "" .Values.servicebus.rabbitmq.host | quote }}
-        - name: RABBITMQ_PORT
-          value: {{ default "" .Values.servicebus.rabbitmq.port | quote }}
-        - name: RABBITMQ_USER
-          value: {{ default "" .Values.servicebus.rabbitmq.user | quote }}
-        - name: RABBITMQ_PASSWORD
-          value: {{ default "" .Values.servicebus.rabbitmq.password | quote }}
-        - name: REDIS_HOST
-          value: {{ default "" .Values.servicebus.redis.host | quote }}
-        - name: REDIS_PORT
-          value: {{ default "" .Values.servicebus.redis.port | quote }}
-        - name: REDIS_PASSWORD
-          value: {{ default "" .Values.servicebus.redis.password | quote }}
+        # - name: RABBITMQ_HOST
+        #   value: {{ default "" .Values.servicebus.rabbitmq.host | quote }}
+        # - name: RABBITMQ_PORT
+        #   value: {{ default "" .Values.servicebus.rabbitmq.port | quote }}
+        # - name: RABBITMQ_USER
+        #   value: {{ default "" .Values.servicebus.rabbitmq.user | quote }}
+        # - name: RABBITMQ_PASSWORD
+        #   value: {{ default "" .Values.servicebus.rabbitmq.password | quote }}
+        # - name: REDIS_HOST
+        #   value: {{ default "" .Values.servicebus.redis.host | quote }}
+        # - name: REDIS_PORT
+        #   value: {{ default "" .Values.servicebus.redis.port | quote }}
+        # - name: REDIS_PASSWORD
+        #   value: {{ default "" .Values.servicebus.redis.password | quote }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:

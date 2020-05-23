@@ -2,10 +2,10 @@ FROM node:14
 
 ADD . /src
 WORKDIR /src
-RUN npm ci
-RUN npm run lint
-RUN npm run test
-RUN npm prune --production
+RUN npm ci --production-only
+# RUN npm run lint
+# RUN npm run test
+# RUN npm prune --production
 
 ENV PORT=3000
 EXPOSE 3000

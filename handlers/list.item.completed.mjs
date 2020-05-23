@@ -1,6 +1,7 @@
 import log from 'llog'
 
 export const event = 'list.item.completed'
+export const ack = false
 
 log.info({ msg: `registering ${event}`, event })
 

@@ -11,7 +11,6 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
-      - REDIS_HOST=redis
       - MONGODB_HOST=mongo
       - DEBUG=servicebus*,register-handlers*
       - LOG_LEVEL=10
@@ -22,17 +21,11 @@ services:
       - servicebus
       - default
     depends_on:
-      - redis
       - zookeeper
       - kafka1
       - kafka2
       - kafka3
       - mongo
-
-  redis:
-    image: redis
-    networks:
-      - servicebus
 
   mongo:
     image: mongo

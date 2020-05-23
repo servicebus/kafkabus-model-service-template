@@ -1,5 +1,4 @@
 import path from 'path'
-
 import log from 'llog'
 import registerHandlers from '@servicebus/register-handlers'
 import servicebus from '@servicebus/kafkabus-common'
@@ -95,12 +94,10 @@ export const start = async (onStart) => {
   // registerHandlers registers all of your handlers from the folder specified.
   //
   log.info('registering handlers')
-  const { queuePrefix } = config.servicebus
   await registerHandlers({
     bus,
     path: path.resolve(process.cwd(), 'handlers'),
-    modules: true,
-    queuePrefix
+    modules: true
   })
   log.info('registered handlers')
 

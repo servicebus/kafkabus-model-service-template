@@ -5,10 +5,10 @@ import readableId from 'readable-id-mjs'
 const config = {
   servicebus: {
     serviceName: `test-todolist-model-service-${readableId()}`,
-    redis: {
-      host: process.env.REDIS_HOST || 'localhost',
-      port: process.env.REDIS_PORT || '6379'
-    },
+    // redis: {
+    //   host: process.env.REDIS_HOST || 'localhost',
+    //   port: process.env.REDIS_PORT || '6379'
+    // },
     kafka: {
       host: process.env.KAFKA_HOST || '127.0.0.1',
       port: process.env.KAFKA_PORT || '9092',

@@ -1,6 +1,10 @@
 import log from 'llog'
 import { TodoList } from '../lib/models/TodoList.mjs'
 import { todoListRepository } from '../lib/repos/todoListRepository.mjs'
+import dm from 'debug'
+
+const debug = dm('microservice')
+export const ack = false
 
 export const command = 'list.item.add'
 
@@ -10,7 +14,12 @@ log.info({ msg: `registering ${command}`, command })
 // WARNING: You can not use an () => {} function here, because the context
 // that contains the bus will not be bound properly!
 //
-export const listen = async function ({ type, data, datetime }) {
+export const listen = async function ({ type, data, datetime }, done, fail) {
+  debug('listen handler starting', done)
+  debug('arguments', arguments)
+  const cancel = setTimeout(() => {
+    throw new Error('the request is taking too long')
+  }, 60 * 1000)
   try {
     const { bus } = this
     const { todoListId, item } = data
@@ -45,15 +54,20 @@ export const listen = async function ({ type, data, datetime }) {
 
     todoList.addItem(item)
 
+    debug('saving todolist')
     await todoListRepository.commitAsync(todoList)
 
-    bus.publish('list.item.added', item)
+    debug('todolist saved')
+    clearTimeout(cancel)
+
+    await bus.publish('list.item.added', item)
     log.info({ msg: 'list.item.added', item })
 
-    done()
+    return done()
   } catch (err) {
-    log.error(err)
-    // done(`Command Handler Failed for ${command} - ${err}`)
+    log.error('error handling message:', err)
+    debug('error handling message:', err)
+    return fail(`Command Handler Failed for ${command} - ${err}`)
   }
 }
 

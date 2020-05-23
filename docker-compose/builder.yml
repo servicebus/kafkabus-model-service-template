@@ -84,3 +84,10 @@ services:
     environment: 
       - apiUrl=${apiUrl:-http://api.yourwebsite.com}
     command: npm run test:staging
+
+  image:
+    build: ..
+    image: todolist-model-service
+    volumes:
+      - ../coverage:/usr/src/app/coverage
+    working_dir: /usr/src/app/

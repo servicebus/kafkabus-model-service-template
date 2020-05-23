@@ -9,7 +9,9 @@ setup:
 	make restore-db
 
 docker-build:
-	docker build -t todolist-model-service .
+	# docker build -t todolist-model-service .
+	COMPOSE_FILE=./docker-compose/builder.yml \
+		docker-compose build image
 
 ci:
 	rm -rf node_modules
@@ -57,7 +59,7 @@ installDevOnly:
 
 staging:
 	COMPOSE_FILE=./docker-compose/staging.yml \
-		docker-compose up -d zookeeper kafka1 kafka2 kafka3 redis mongo
+		docker-compose up -d zookeeper kafka1 kafka2 kafka3 mongo
 	sleep 25
 	COMPOSE_FILE=./docker-compose/staging.yml \
 		docker-compose up -d staging-deps
