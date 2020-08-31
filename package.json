@@ -28,8 +28,8 @@
     "sourced-repo-mongo": "1.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.11.0",
-    "@babel/preset-env": "7.11.0",
+    "@babel/plugin-transform-runtime": "7.11.5",
+    "@babel/preset-env": "7.11.5",
     "babel-jest": "26.3.0",
     "debug": "4.1.1",
     "eslint": "7.7.0",
