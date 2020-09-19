@@ -17,7 +17,7 @@
     "prepush": "make ci"
   },
   "dependencies": {
-    "@servicebus/kafkabus-common": "1.1.1",
+    "@servicebus/kafkabus-common": "1.1.2",
     "@servicebus/register-handlers": "1.1.0",
     "bluebird": "3.7.2",
     "cconfig": "2.0.2",
