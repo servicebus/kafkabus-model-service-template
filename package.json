@@ -21,7 +21,7 @@
     "@servicebus/register-handlers": "1.1.1",
     "bluebird": "3.7.2",
     "cconfig": "2.0.2",
-    "llog": "0.2.0",
+    "llog": "0.3.3",
     "readable-id-mjs": "1.0.0",
     "sourced": "2.0.8",
     "sourced-queued-repo": "1.0.3",
