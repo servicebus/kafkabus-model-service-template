@@ -25,7 +25,7 @@
     "readable-id-mjs": "1.0.0",
     "sourced": "2.0.8",
     "sourced-queued-repo": "1.0.3",
-    "sourced-repo-mongo": "1.0.0"
+    "sourced-repo-mongo": "1.0.2"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "7.12.10",
